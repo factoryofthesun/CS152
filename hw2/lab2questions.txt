@@ -1,0 +1,20 @@
+Lab 2 questions	
+Name: Richard Liu
+Cnet ID: guanzhi
+Lab start time: 3:30
+
+Note: There may be more than one answer. Make sure you circle 
+all that apply 
+******* Test-driven Development ******* 
+
+1. Which statement(s) are true about TDD? 
+(delete all answers that are not true)  
+      b) A given test is written before its associated code is implemented 
+      c) A given test is run before its associated code is implemented  
+
+2. What are the perceived benefit(s) of TDD? 
+(delete all answers that are not true) 
+      a) Help programmers better understand the requirements (specifications) for the problem before implementing the solution. 
+      b) Make sure that new code doesn't break existing functionality, better isolating errors.  
+      d) Builds confidence in the validity of each new set of tests. 
+

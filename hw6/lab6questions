@@ -1,0 +1,16 @@
+
+Pre-lab 6 questions	
+Name: Richard Liu
+Cnet ID: guanzhi
+Lab start time: 3:#0
+
+Note: This week, it is free response rather than multiple choice 
+1. How is a tree different from a linked list? 
+A linked list is linear, and each node points to the next node in the list. A tree has multiple branches after the root,so that its size increases multiplicatively with every level. 
+
+2. What are the two properties that define a binary search tree? 
+A binary search tree is defined by an monotonic ordering function that applies to every node in the tree. It is also defined by two subtrees that are contained within each node. 
+
+
+Tagged unions are one way of allowing the same data structure to hold related items at the same time. This is not for code reuse. Rather, it is so that, for example, a queue can be used to do FIFO across both of them. If we needed to maintain two different queues, the order between the two queues would be lost. Conversely, void pointers with function pointers is a way to implement code reuse. You can declare two linked list variables, and one linked list can store one type, whereas the other linked list stores another type. If these are sorted in any way, then you need a function that compares the two items since the linked list code is not aware of the details of the items. What is the signature for such a function? 
+      c) int compare(void *x, void *y); 

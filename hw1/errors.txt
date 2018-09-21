@@ -1,0 +1,104 @@
+Comment out #include "functions.h" from errormain.c (place "//" before it) 
+1)errormain.c:12:29: warning: implicit declaration of function 'fact' is invalid in C99 [-Wimplicit-function-declaration]
+        unsigned long int result = fact(input);
+                                   ^
+errormain.c:39:2: warning: implicit declaration of function 'print_stuff' is invalid in C99
+      [-Wimplicit-function-declaration]
+        print_stuff(5, 7.5, 8.9, 'a');
+        ^
+errormain.c:41:11: warning: implicit declaration of function 'return_a_value' is invalid in C99
+      [-Wimplicit-function-declaration]
+        output = return_a_value(input);
+                 ^
+errormain.c:51:2: warning: implicit declaration of function 'do_some_math' is invalid in C99
+      [-Wimplicit-function-declaration]
+        do_some_math(10, 3.5, 'f');
+        ^
+4 warnings generated.
+/tmp/errormain-8b0290.o: In function `check_factorial':
+errormain.c:(.text+0x15): undefined reference to `fact'
+/tmp/errormain-8b0290.o: In function `main':
+errormain.c:(.text+0xb9): undefined reference to `print_stuff'
+errormain.c:(.text+0xcd): undefined reference to `return_a_value'
+errormain.c:(.text+0xfb): undefined reference to `return_a_value'
+errormain.c:(.text+0x129): undefined reference to `return_a_value'
+errormain.c:(.text+0x174): undefined reference to `do_some_math'
+clang: error: linker command failed with exit code 1 (use -v to see invocation) 
+
+2. Declare the same variable name twice 
+2) errormain.c:13:20: error: redefinition of 'result'
+        unsigned long int result = 0;
+                          ^
+errormain.c:12:20: note: previous definition is here
+        unsigned long int result = fact(input);
+                          ^
+1 error generated.
+
+3. Remove a variable declaration 
+3) errormain.c:12:2: error: use of undeclared identifier 'result'
+        result = fact(input);
+        ^
+errormain.c:13:18: error: use of undeclared identifier 'result'
+        if (expected == result)
+                        ^
+errormain.c:18:19: error: use of undeclared identifier 'result'
+                        input,expected,result);
+                                       ^
+3 errors generated.
+
+4. Misspell a variable name or function name 
+4) errormain.c:13:18: error: use of undeclared identifier 'result'; did you mean 'resul'?
+        if (expected == result)
+                        ^~~~~~
+                        resul
+errormain.c:12:20: note: 'resul' declared here
+        unsigned long int resul = fact(input);
+                          ^
+errormain.c:18:19: error: use of undeclared identifier 'result'; did you mean 'resul'?
+                        input,expected,result);
+                                       ^~~~~~
+                                       resul
+errormain.c:12:20: note: 'resul' declared here
+        unsigned long int resul = fact(input);
+                          ^
+2 errors generated.
+
+5. Remove a closed curly brace 
+5) errormain.c:10:68: error: expected ';' after top level declarator
+int check_factorial(unsigned int input, unsigned long int expected)
+                                                                   ^
+                                                                   ;
+errormain.c:12:34: error: use of undeclared identifier 'input'
+        unsigned long int result = fact(input);
+                                        ^
+errormain.c:13:2: error: expected identifier or '('
+        if (expected == result)
+        ^
+errormain.c:15:2: error: expected identifier or '('
+        else
+        ^
+errormain.c:21:1: error: extraneous closing brace ('}')
+}
+^
+5 errors generated.
+
+6. Remove the line #include <stdlib.h> from errormain.c 
+6) /tmp/errormain-b3b943.o: In function `check_factorial':
+errormain.c:(.text+0x13): undefined reference to `fact'
+/tmp/errormain-b3b943.o: In function `main':
+errormain.c:(.text+0xb7): undefined reference to `print_stuff'
+errormain.c:(.text+0xc6): undefined reference to `return_a_value'
+errormain.c:(.text+0xf2): undefined reference to `return_a_value'
+errormain.c:(.text+0x11e): undefined reference to `return_a_value'
+errormain.c:(.text+0x167): undefined reference to `do_some_math'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+7. Remove a semi-colon from the end of one of the lines 
+7) errormain.c:12:40: error: expected ';' at end of declaration
+        unsigned long int result = fact(input)
+                                              ^
+                                              ;
+errormain.c:15:2: error: expected expression
+        else
+        ^
+2 errors generated.
